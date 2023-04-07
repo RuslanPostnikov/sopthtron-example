@@ -202,17 +202,20 @@ var sophtron = (function(){
         state.widgetFrame.title = 'Sophtron';
         state.widgetFrame.width = '100%';
         state.widgetFrame.height = '100%';
-        state.widgetFrame.style.top = '0';
-        state.widgetFrame.style.left = '0';
-        state.widgetFrame.style.right = '0';
-        state.widgetFrame.style.bottom = '0';
-        state.widgetFrame.style.position = 'fixed';
+        // state.widgetFrame.style.top = '0';
+        // state.widgetFrame.style.left = '0';
+        // state.widgetFrame.style.right = '0';
+        // state.widgetFrame.style.bottom = '0';
+        // state.widgetFrame.style.position = 'fixed';
         state.widgetFrame.style.zIndex = '9999999999';
         state.widgetFrame.style.borderWidth = '0';
         state.widgetFrame.style.overflowX = 'hidden';
         state.widgetFrame.style.overflowY = 'auto';
         state.widgetFrame.style.display = 'none';
-        document.body.appendChild(state.widgetFrame);
+        // document.body.appendChild(state.widgetFrame);
+
+        // append in certain component
+        document.getElementById('sophtron').appendChild(state.widgetFrame);
 
         window.addEventListener('message', onMessage, false);
         onMessage({data: { type: 'action', action: 'init', initAction: action}});

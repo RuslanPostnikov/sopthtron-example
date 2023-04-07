@@ -1,15 +1,26 @@
 import "./App.css";
 import sophtron from "./sophtron-widget-loader";
-import { useEffect } from "react";
+import {useEffect, useState} from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function App() {
+  const [displayWidget, setDisplayWidget] = useState('none');
   const navigate = useNavigate();
   const onFinish = (data) => {
     console.log(data);
     navigate("accounts");
   };
+
+  const showWidget = () => {
+    setDisplayWidget('block');
+    sophtron.show();
+  }
+
+  const hideWidget = () => {
+    setDisplayWidget('none');
+    sophtron.hide();
+  }
 
   useEffect(() => {
     (async () => {
@@ -34,7 +45,7 @@ function App() {
         console.log(e);
       }
     })();
-  });
+  }, []);
 
   return (
     <div
@@ -42,9 +53,16 @@ function App() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        flexDirection: "column",
       }}
     >
-      <button onClick={sophtron.show}>Add</button>
+      <div>
+        <button onClick={showWidget}>Add</button>
+        <button onClick={hideWidget}>Hide</button>
+      </div>
+      <div id='sophtron' style={{ width: 500, height: 500, background: 'red', display: displayWidget }}>
+        Sophtron
+      </div>
     </div>
   );
 }
